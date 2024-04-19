@@ -16,7 +16,9 @@ from config import BANNED_USERS
 @app.on_message(command(["التكرار", "تكرار"]) & ~BANNED_USERS)
 @AdminRightsCheck
 async def admins(cli, message: Message, _, chat_id):
-    if "تكرار تفعيل" not in message.text or "تكرار تعطيل" not in message.text or "التكرار تفعيل" not in message.text or "التكرار تعطيل" not in message.text:
+    if len(message.command) > 2:
+        return
+    if "تكرار تفعيل" not in message.command or "تكرار تعطيل" not in message.command or "التكرار تفعيل" not in message.command or "التكرار تعطيل" not in message.command:
         return
     state = message.text.split(None, 1)[1].strip()
     user_mention = message.from_user.mention if message.from_user else "المشـرف"
