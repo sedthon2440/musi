@@ -23,7 +23,7 @@ from config import BANNED_USERS
 )
 @AdminRightsCheck
 async def skip(cli, message: Message, _, chat_id):
-    if " " in message.text:
+    if len(message.command) > 1:
         return
     if not len(message.command) < 2:
         loop = await get_loop(chat_id)
