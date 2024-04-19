@@ -17,7 +17,7 @@ from config import BANNED_USERS
 @app.on_message(command(["وقف", "قف"]) & ~BANNED_USERS)
 @AdminRightsCheck
 async def pause_admin(cli, message: Message, _, chat_id):
-    if " " in message.text:
+    if len(message.command) > 1:
         return
     if not await is_music_playing(chat_id):
         return await message.reply_text(_["admin_1"])
