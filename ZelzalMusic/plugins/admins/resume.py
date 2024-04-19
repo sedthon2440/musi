@@ -17,7 +17,7 @@ from config import BANNED_USERS
 @app.on_message(command(["كمل", "كملي"]) & ~BANNED_USERS)
 @AdminRightsCheck
 async def resume_com(cli, message: Message, _, chat_id):
-    if " " in message.text:
+    if len(message.command) > 1:
         return
     if await is_music_playing(chat_id):
         return await message.reply_text(_["admin_3"])
