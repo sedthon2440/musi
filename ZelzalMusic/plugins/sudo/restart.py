@@ -35,6 +35,8 @@ async def is_heroku():
 @app.on_message(command(["getlog", "logs", "السجلات"]) & SUDOERS)
 @language
 async def log_(client, message, _):
+    if len(message.command) > 1:
+        return
     try:
         await message.reply_document(document="log.txt")
     except:
@@ -44,6 +46,8 @@ async def log_(client, message, _):
 @app.on_message(command(["تحدديث", "حدث"]) & SUDOERS)
 @language
 async def update_(client, message, _):
+    if len(message.command) > 1:
+        return
     if await is_heroku():
         if HAPP is None:
             return await message.reply_text(_["server_2"])
@@ -117,6 +121,8 @@ async def update_(client, message, _):
 
 @app.on_message(command(["اعاده تشغيل"]) & SUDOERS)
 async def restart_(_, message):
+    if len(message.command) > 1:
+        return
     response = await message.reply_text("- جـارِ إعـادة التشغيـل ...")
     ac_chats = await get_active_chats()
     for x in ac_chats:
